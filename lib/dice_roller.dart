@@ -54,6 +54,9 @@ class _DiceRollerState extends State<DiceRoller> {
     String message = 'Your Score:';
     String showScore = '$totalScore/20';
     String buttonText = 'Roll Dice';
+
+    double progress = (totalScore / 20).clamp(0.0, 1.0);
+    Color progressColor = Color.lerp(Colors.red, Colors.green, progress)!;
     
     if (rollCount == 5) {
       message = totalScore >= 20 ? 'You win!' : 'You lose!';
@@ -75,6 +78,16 @@ class _DiceRollerState extends State<DiceRoller> {
           style: const TextStyle(
             fontSize: 32, 
             color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 20),
+        SizedBox(
+          width: 250,
+          child: LinearProgressIndicator(
+            value: progress,
+            minHeight: 7.5,
+            backgroundColor: Colors.grey[400],
+            valueColor: AlwaysStoppedAnimation<Color>(progressColor),
           ),
         ),
         const SizedBox(height: 20),
