@@ -18,47 +18,92 @@ class _DiceRollerState extends State<DiceRoller> {
   int rollCount = 0;
   List<int> diceRolls = List.filled(5, 0);
 
-  void rollDice() {
+  void _rollDice() {
     setState(() {
       if (rollCount < 5) {
         currentDiceRoll = randomizer.nextInt(6) + 1;
-        // print('${currentDiceRoll}');
         diceRolls[rollCount++] = currentDiceRoll;
       }
     });
   }
   
-  void resetGame() {
+  void _resetGame() {
     setState(() {
       currentDiceRoll = 2;
       diceRolls = List.filled(5, 0);
       rollCount = 0;
     });
   }
+  
+  String _getRoundSuffix(int number) {
+    switch (number) {
+      case 1:
+        return '${number}st';
+      case 2:
+        return '${number}nd';
+      case 3:
+        return '${number}rd';
+      default:
+        return '${number}th';
+    }
+  }
 
   @override
   Widget build(context) {
     int totalScore = diceRolls.fold(0, (previousValue, element) => previousValue + element);
-    String message = '$totalScore/20';
-    String buttonText = rollCount < 5 ? 'Roll Dice' : 'Play again';
-
+    String message = 'Your Score:';
+    String showScore = '$totalScore/20';
+    String buttonText = 'Roll Dice';
+    
+    if (rollCount == 5) {
+      message = totalScore >= 20 ? 'You win!' : 'You lose!';
+      buttonText = 'Play again';
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          'Your Score:',
-          style: TextStyle(
+        Text(
+          message,
+          style: const TextStyle(
             fontSize: 24, 
             color: Colors.white,
           ),
         ),
         Text(
-          message,
+          showScore,
           style: const TextStyle(
             fontSize: 32, 
             color: Colors.white,
           ),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (int i = 0; i < 5; i++)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Column(
+                  children: [
+                    Text(
+                      _getRoundSuffix(i + 1),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      diceRolls[i] == 0 ? '--' : diceRolls[i].toString(),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
         ),
         const SizedBox(height: 20),
         Image.asset(
@@ -67,7 +112,7 @@ class _DiceRollerState extends State<DiceRoller> {
         ),
         const SizedBox(height: 20),
         TextButton(
-          onPressed: rollCount < 5 ? rollDice : resetGame,
+          onPressed: rollCount < 5 ? _rollDice : _resetGame,
           style: TextButton.styleFrom(
             // padding: const EdgeInsets.only(
             //   top: 20,
