@@ -5,7 +5,12 @@ import 'styled_text.dart';
 final randomizer = Random();
 
 class DiceRoller extends StatefulWidget {
-  const DiceRoller({super.key});
+  const DiceRoller({
+    super.key,
+    required this.changeColor,
+  });
+
+  final void Function(int score) changeColor;
 
   @override
   State<DiceRoller> createState() {
@@ -24,6 +29,10 @@ class _DiceRollerState extends State<DiceRoller> {
         currentDiceRoll = randomizer.nextInt(6) + 1;
         diceRolls[rollCount++] = currentDiceRoll;
       }
+      if ( rollCount == 5 ) {
+        int totalScore = diceRolls.fold(0, (previousValue, element) => previousValue + element);
+        widget.changeColor(totalScore);
+      }
     });
   }
   
@@ -32,6 +41,7 @@ class _DiceRollerState extends State<DiceRoller> {
       currentDiceRoll = 2;
       diceRolls = List.filled(5, 0);
       rollCount = 0;
+      widget.changeColor(0);
     });
   }
   
@@ -59,7 +69,7 @@ class _DiceRollerState extends State<DiceRoller> {
     Color progressColor = Color.lerp(Colors.red, Colors.green, progress)!;
     
     if (rollCount == 5) {
-      message = totalScore >= 20 ? 'You win!' : 'You lose!';
+      message = totalScore >= 20 ? 'You Win!' : 'You Lose!';
       buttonText = 'Play again';
     }
 
@@ -69,7 +79,7 @@ class _DiceRollerState extends State<DiceRoller> {
         Text(
           message,
           style: const TextStyle(
-            fontSize: 24, 
+            fontSize: 28, 
             color: Colors.white,
           ),
         ),
@@ -82,7 +92,7 @@ class _DiceRollerState extends State<DiceRoller> {
         ),
         const SizedBox(height: 20),
         SizedBox(
-          width: 250,
+          width: 260,
           child: LinearProgressIndicator(
             value: progress,
             minHeight: 7.5,

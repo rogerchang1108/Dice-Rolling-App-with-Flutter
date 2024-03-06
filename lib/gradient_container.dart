@@ -5,28 +5,51 @@ import 'dice_roller.dart';
 const startAlignment = Alignment.topLeft;
 const endAlignment = Alignment.bottomRight;
 
-class GradientContainer extends StatelessWidget {
-  const GradientContainer(this.color1, this.color2, {super.key});
+class GradientContainer extends StatefulWidget {
+  const GradientContainer({super.key});
 
-  const GradientContainer.purple({super.key})
-      : color1 = Colors.deepPurple,
-        color2 = Colors.indigo;
+  @override
+  State<GradientContainer> createState() => _GradientContainerState();
+}
 
-  final Color color1;
-  final Color color2;
+class _GradientContainerState extends State<GradientContainer> {
+  Color color1 = const Color.fromARGB(255, 33, 5, 109);
+  Color color2 = const Color.fromARGB(255, 68, 21, 149);
+
+  void _changeColor(int totalScore) {
+    if(totalScore >= 20) {
+      setState(() {
+        color1 = const Color.fromARGB(255, 0, 91, 0);
+        color2 = const Color.fromARGB(255, 42, 146, 42);
+      });
+    } else if (totalScore == 0) {
+      setState(() {
+        color1 = const Color.fromARGB(255, 33, 5, 109);
+        color2 = const Color.fromARGB(255, 68, 21, 149);
+      });
+    } else {
+      setState(() {
+        color1 = const Color.fromARGB(255, 220, 20, 60);
+        color2 = const Color.fromARGB(255, 255, 65, 94);
+      });
+    }
+  }
 
   @override
   Widget build(context) {
+    Widget screenWidget = DiceRoller(changeColor: _changeColor);
+
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: RadialGradient(
           colors: [color1, color2],
-          begin: startAlignment,
-          end: endAlignment,
+          stops: const [0.0, 1.0],
+          center: Alignment.center,
+          radius: 1.0,
         ),
       ),
-      child: const Center(
-        child: DiceRoller(),
+      child: Center(
+        child: screenWidget,
       ),
     );
   }
