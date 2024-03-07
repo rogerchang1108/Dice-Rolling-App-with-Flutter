@@ -29,8 +29,8 @@ class _GradientContainerState extends State<GradientContainer> {
       });
     } else {
       setState(() {
-        color1 = const Color.fromARGB(255, 220, 20, 60);
-        color2 = const Color.fromARGB(255, 255, 65, 94);
+        color1 = const Color.fromARGB(255, 188, 11, 46);
+        color2 = const Color.fromARGB(255, 251, 51, 81);
       });
     }
   }
