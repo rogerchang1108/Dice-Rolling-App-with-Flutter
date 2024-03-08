@@ -29,7 +29,7 @@ class _DiceRollerState extends State<DiceRoller> {
         currentDiceRoll = randomizer.nextInt(6) + 1;
         diceRolls[rollCount++] = currentDiceRoll;
       }
-      if ( rollCount == 5 ) {
+      if (rollCount == 5) {
         int totalScore = diceRolls.fold(0, (previousValue, element) => previousValue + element);
         widget.changeColor(totalScore);
       }
@@ -134,16 +134,11 @@ class _DiceRollerState extends State<DiceRoller> {
           width: 200,
         ),
         const SizedBox(height: 20),
-        TextButton(
+        ElevatedButton(
           onPressed: rollCount < 5 ? _rollDice : _resetGame,
-          style: TextButton.styleFrom(
-            // padding: const EdgeInsets.only(
-            //   top: 20,
-            // ),
-            foregroundColor: Colors.white,
-            textStyle: const TextStyle(
-              fontSize: 28,
-            ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            side: const BorderSide(color: Colors.white, width: 1),
           ),
           child: StyledText(buttonText),
         )
