@@ -1,10 +1,10 @@
 # Dice Rolling App
 
-In this project, we'll be using Flutter and Dart to create a Dice Rolling App with a simple game.
+In this project, using Flutter and Dart to create a Dice Rolling App with a simple game.
 
 ## Features
 
-1. Display the **score of each dice roll** in this round (display **"--"** if not completed), and show how many dice have been rolled in the current five opportunities, along with the **current total score** (for example, **Your score: 12/20**).
+1. Display the **score of each dice roll** in this round (display **"--"** if not completed), and show how many dice have been rolled in the current five opportunities, along with the **current total score** (for example, **Your score: 8/20**).
 
    ![component](img/1.png)
 
@@ -16,11 +16,11 @@ In this project, we'll be using Flutter and Dart to create a Dice Rolling App wi
 
 4. Upon completion (**score >= 20**), the background will change to a **green gradient**, and a **congratulations message** will be displayed (e.g., 'You win'). 
 
-   ![component](img/4.png)
+   ![component](img/3.png)
 
 5. Conversely, if not completed (**score < 20**), the background will change to a **red gradient**, and a **failure message** will be displayed (e.g., 'You lose').
 
-   ![component](img/3.png)
+   ![component](img/4.png)
 
 ## Resources
 
