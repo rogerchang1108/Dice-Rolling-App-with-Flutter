@@ -1,46 +1,29 @@
 # Dice Rolling App
 
-In this project, using Flutter and Dart to fulfill the Dice Rolling App with little game.
-
+In this project, we'll be using Flutter and Dart to create a Dice Rolling App with a simple game.
 
 ## Features
-<br>
-(1) Display the **score of each dice** roll in this round (display **"--"** if not completed),
-<br>
-<br>
-and show how many dice have been rolled in the current five opportunities (for example, **Chance left: 4**),
-<br>
-<br>
-along with the **current total score**(for example, **Your score: 3/20**).
-<br>
 
-<br>![component](img/1.png)<br> 
+1. Display the **score of each dice roll** in this round (display **"--"** if not completed), and show how many dice have been rolled in the current five opportunities, along with the **current total score** (for example, **Your score: 12/20**).
 
-<br>
-(2) A **progress bar** is displayed to track the distance to the **20-points** goal.
-<br>
+   ![component](img/1.png)
 
-<br>![component](img/2.png)<br> 
+2. A **progress bar** is displayed to track the distance to the **20-points** goal.
 
-<br>
-Modify the dice roll button to display **"Play again"** at the end of each round to start the next round.
-<br>
+   ![component](img/2.png)
 
-<br>
-Upon completion (**score >= 20**), the background will change to a **green gradient**, and a **congratulations message** will be displayed (e.g., 'You win'). 
-<br>
+3. Modify the dice roll button to display **"Play again"** at the end of each round to start the next round.
 
-<br>![component](img/4.png)<br> 
+4. Upon completion (**score >= 20**), the background will change to a **green gradient**, and a **congratulations message** will be displayed (e.g., 'You win'). 
 
-<br>
-Conversely, if not completed(**score < 20**), the background will change to a **red gradient**, and a **failure message** will be displayed (e.g., 'You lose').
-<br>
+   ![component](img/4.png)
 
-<br>![component](img/3.png)<br> 
+5. Conversely, if not completed (**score < 20**), the background will change to a **red gradient**, and a **failure message** will be displayed (e.g., 'You lose').
 
+   ![component](img/3.png)
 
-# Resources
+## Resources
 
-A few introductory tutorials designed to help learn layout.
+A few introductory tutorials designed to help learn layout:
 - [Table class](https://api.flutter.dev/flutter/widgets/Table-class.html)
 - [LinearProgressIndicator class](https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html)
